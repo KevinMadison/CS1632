@@ -26,6 +26,7 @@ public class City {
 		this.createPaths();
 	}
 	
+	//creates all inner and outer locations
 	public int createLocations(){
 		
 		//Create City Locations
@@ -39,6 +40,7 @@ public class City {
 		return 1;
 	}
 	
+	//adds each path to all locations
 	public int createPaths(){
 		Path tempStreet, tempAvenue;
 		
@@ -93,6 +95,7 @@ public class City {
 		return 1;
 	}
 	
+	//moves the currentLocation to the next location
 	public String moveLocation(int i){
 		String pathName;
 		switch(i){

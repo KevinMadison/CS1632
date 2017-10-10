@@ -1,3 +1,10 @@
+/*
+ * @author Kevin Madison
+ * CS 1632 Quality Assurance
+ * Deliverable 2
+ * Instructor: Bill Laboon
+*/
+
 public class Path
 {
 	Location to;
