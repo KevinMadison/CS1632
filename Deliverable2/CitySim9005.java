@@ -1,3 +1,15 @@
+/**
+ * 
+ * @author Kevin Madison
+ * CS 1632 Quality Assurance
+ * Instructor: Bill Laboon
+ * 
+ * CitySim9005:
+ * 	Running this program with a single integer argument as the seed will produce 5 drivers who will traverse the city in a psuedorandom way. 
+ * 	In the code below, I chose to use a random integer between 0-11 because there are 4 possible locations, and two possible directions from each location. Since 12 is divisable by 4 and 2, I thought this was a suitable range.
+ * 
+ */
+
 import java.util.Random;
 
 public class CitySim9005 {
@@ -5,7 +17,7 @@ public class CitySim9005 {
 		// Initialize Local Variables
 		long seed;
 		Random generator;
-		int num, num2;
+		int num;
 		
 		// BEGIN: Check argument for if there is only one integer argument
 		if(args.length > 1 || args.length < 1){
@@ -27,27 +39,21 @@ public class CitySim9005 {
 		
 		// Loop for each driver (1-5), create a path
 		for(int i = 1; i < 6; i++){
-			num = generator.nextInt(12);
-			num2 = generator.nextInt(12);
-			Driver currentDriver = new Driver(num, num2);
+			num = generator.nextInt(4);//driver's starting path
+			Driver currentDriver = new Driver(i, num);
 			
-			while(currentDriver.done == false){
-				System.out.println("Driver "+ i +" heading from "+ currentDriver.from +" to "+ currentDriver.to +" via "+ currentDriver.onPath);
-				num = generator.nextInt(12);
-				currentDriver.nextPath(num);
+			while(currentDriver.checkOutside() == false){
+				num = generator.nextInt(2);
+				currentDriver.drive(num);
+				
+				if(currentDriver.checkOutside() == true){
+					currentDriver.printOutside();
+				}else{
+					currentDriver.printRoute();
+				}
 			}
-			System.out.println("Driver "+ i +" heading from "+ currentDriver.from +" to Outside City via "+ currentDriver.onPath);
-			System.out.println("Driver "+ i +" has gone to "+currentDriver.to +"!");
-			
 			System.out.println("-----");
 		}
 		
 	}
-	
-	public String printTravel(int driver, String from, String to, String street){
-		String returnPath = "Driver"+ driver +"heading from "+ from +"to"+ to +" via "+street;
-		System.out.println(returnPath);
-		return returnPath;
-	}
-	
 }
